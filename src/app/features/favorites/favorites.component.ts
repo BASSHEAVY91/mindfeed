@@ -23,7 +23,16 @@ const HEAT_COLORS = ['bg-gray-100','bg-brand-100','bg-brand-300','bg-brand-500',
     <div class="max-w-4xl mx-auto px-4 py-8">
 
       <!-- ── HEADER ── -->
-      <h1 class="text-3xl font-black text-brand-800 mb-1">📅 Mi Diario de Lectura</h1>
+      <h1 class="text-3xl font-black text-brand-800 mb-1 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-brand-700 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+          <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/>
+          <rect x="7" y="14" width="3" height="3" rx="0.5" fill="currentColor"/>
+        </svg>
+        Mi Diario de Lectura
+      </h1>
       <p class="text-gray-500 mb-8">Tu historial de lectura y artículos guardados.</p>
 
       <!-- ── STATS BAR ── -->
@@ -45,7 +54,18 @@ const HEAT_COLORS = ['bg-gray-100','bg-brand-100','bg-brand-300','bg-brand-500',
       <!-- ── HEATMAP ── -->
       <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 mb-6">
         <div class="flex items-start justify-between mb-4 gap-2 flex-wrap">
-          <h2 class="font-bold text-gray-800">🗓 Hábito de lectura — Últimas 8 semanas</h2>
+          <h2 class="font-bold text-gray-800 flex items-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+              <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/>
+              <circle cx="8" cy="15" r="1" fill="currentColor"/>
+              <circle cx="12" cy="15" r="1" fill="currentColor"/>
+              <circle cx="16" cy="15" r="1" fill="currentColor"/>
+            </svg>
+            Hábito de lectura — Últimas 8 semanas
+          </h2>
           <span class="text-xs text-gray-400">Verde = día activo · Más oscuro = más artículos</span>
         </div>
 
