@@ -8,14 +8,13 @@
   * {
     box-sizing: border-box;
   }
-  html,
-  body {
-    overflow-x: hidden;
-  }
   html {
+    overflow-x: clip; /* funciona en Firefox donde 'hidden' se ignora */
     scroll-behavior: smooth;
   }
   body {
+    overflow-x: hidden;
+    max-width: 100%;
     @apply font-sans text-gray-900 bg-white;
   }
 }
