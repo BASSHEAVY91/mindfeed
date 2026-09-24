@@ -158,6 +158,11 @@ export class GuardianNewsService {
       },
     });
 
+    if (!environment.guardianApiKey) {
+      console.info('[GuardianNewsService] No API key configured – skipping fetch. Register at https://open-platform.theguardian.com/access/');
+      return of([]);
+    }
+
     return this.http.get<GuardianResponse>(this.BASE, { params }).pipe(
       map((res) =>
         (res.response.results ?? []).map((item, idx) =>
