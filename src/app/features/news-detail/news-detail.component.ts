@@ -47,24 +47,26 @@ import { TranslationService, TranslatedArticle } from '../../infrastructure/serv
             {{ article()!.publishedAt | date:'mediumDate' }}
           </span>
 
-          <!-- TRANSLATE BADGE/BUTTON -->
-          <button (click)="toggleTranslation()"
-            [disabled]="translating()"
-            [class]="'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border-2 transition-all ' +
-              (translated() ? 'bg-brand-600 border-brand-600 text-white' : 'border-brand-400 text-brand-700 hover:bg-brand-50')">
-            @if (translating()) {
-              <svg class="w-3.5 h-3.5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
-              </svg>
-              Traduciendo...
-            } @else {
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
-              </svg>
-              {{ translated() ? 'Ver en inglés' : 'Traducir al español' }}
-            }
-          </button>
+          <!-- TRANSLATE BADGE/BUTTON — solo visible si el artículo es en inglés -->
+          @if (!isSpanish()) {
+            <button (click)="toggleTranslation()"
+              [disabled]="translating()"
+              [class]="'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border-2 transition-all ' +
+                (translated() ? 'bg-brand-600 border-brand-600 text-white' : 'border-brand-400 text-brand-700 hover:bg-brand-50')">
+              @if (translating()) {
+                <svg class="w-3.5 h-3.5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+                </svg>
+                Traduciendo...
+              } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                </svg>
+                {{ translated() ? 'Ver en inglés' : 'Traducir al español' }}
+              }
+            </button>
+          }
         </div>
 
         <!-- TRANSLATION ERROR NOTICE -->
@@ -177,6 +179,9 @@ export class NewsDetailComponent implements OnInit {
   translating = signal(false);
   translationError = signal(false);
   private translatedData = signal<TranslatedArticle | null>(null);
+
+  // ── Language detection — oculta el botón Traducir en artículos ya en español
+  isSpanish = computed(() => (this.article()?.language ?? 'es') !== 'en');
 
   // ── Displayed content (original or translated) ─────────────────
   displayTitle   = computed(() => this.translated() && this.translatedData() ? this.translatedData()!.title   : (this.article()?.title   ?? ''));

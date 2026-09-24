@@ -22,4 +22,6 @@ export interface Article {
   sourceUrl?: string;
   /** Optional source provider label */
   sourceLabel?: string;
+  /** Language of the original article content: 'en' | 'es'. Undefined = Spanish (static data). */
+  language?: 'en' | 'es';
 }

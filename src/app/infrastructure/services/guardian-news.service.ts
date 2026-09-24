@@ -228,6 +228,7 @@ export class GuardianNewsService {
       tags,
       relatedIds: [],
       sourceUrl: item.webUrl,
+      language: 'en',
     } satisfies Article & { sourceUrl?: string };
   }
 }
