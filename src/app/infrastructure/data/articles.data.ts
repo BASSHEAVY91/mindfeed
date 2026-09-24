@@ -1,5 +1,8 @@
 import { Article } from '../../core/domain/models/article.model';
 
+/** Alias kept for backward-compatibility with NewsAggregatorService */
+export const STATIC_ARTICLES: Article[] = [];
+
 export const ARTICLES_DATA: Article[] = [
   {
     id: '1',
@@ -153,3 +156,6 @@ export const ARTICLES_DATA: Article[] = [
     relatedIds: ['1', '2'],
   },
 ];
+
+// Populate STATIC_ARTICLES reference (same array, no duplication)
+ARTICLES_DATA.forEach((a) => STATIC_ARTICLES.push(a));
