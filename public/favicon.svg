@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="32" fill="#0D4A22"/>
+  <!-- Brain icon (two lobes) inspired by lucide brain -->
+  <g transform="translate(11,11)" fill="none" stroke="#7FCC9E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left lobe -->
+    <path d="M21 4.5A2.5 2.5 0 0 0 16.56 5.64 2.5 2.5 0 0 0 13.32 9.88 3 3 0 0 0 13 15.46 2.5 2.5 0 0 0 14.32 19.7 2.5 2.5 0 0 0 19.28 19.24"/>
+    <!-- Right lobe -->
+    <path d="M21 4.5A2.5 2.5 0 0 1 25.44 5.64 2.5 2.5 0 0 1 28.68 9.88 3 3 0 0 1 29 15.46 2.5 2.5 0 0 1 27.68 19.7 2.5 2.5 0 0 1 22.72 19.24"/>
+    <!-- Center vertical line -->
+    <line x1="21" y1="4.5" x2="21" y2="21"/>
+  </g>
+</svg>

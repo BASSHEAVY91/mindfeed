@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter, withViewTransitions } from '@angular/router';
+import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { routes } from './app.routes';
 import { ArticleRepositoryPort } from './core/domain/ports/article.repository.port';
 import { FavoritesRepositoryPort } from './core/domain/ports/favorites.repository.port';
@@ -9,7 +9,11 @@ import { LocalStorageFavoritesRepository } from './infrastructure/repositories/l
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZonelessChangeDetection(),
-    provideRouter(routes, withViewTransitions()),
+    provideRouter(
+      routes,
+      withViewTransitions(),
+      withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' }),
+    ),
     {
       provide: ArticleRepositoryPort,
       useClass: InMemoryArticleRepository,
