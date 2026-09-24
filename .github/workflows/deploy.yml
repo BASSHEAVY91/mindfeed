@@ -28,6 +28,12 @@ jobs:
       - name: Build production bundle
         run: npm run build -- --configuration=production
 
+      - name: Ensure SPA fallback files in dist
+        run: |
+          echo "/* /index.html 200" > dist/mindfeed/browser/_redirects
+          cp dist/mindfeed/browser/index.html dist/mindfeed/browser/404.html
+          echo "✅ _redirects and 404.html written to dist/mindfeed/browser/"
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
