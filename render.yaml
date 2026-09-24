@@ -2,7 +2,10 @@ services:
   - type: web
     name: mindfeed
     runtime: static
-    buildCommand: npm ci && npm run build -- --configuration=production && echo "/* /index.html 200" > dist/mindfeed/browser/_redirects && cp dist/mindfeed/browser/index.html dist/mindfeed/browser/404.html
+    buildCommand: npm ci && node scripts/set-env.js && npm run build -- --configuration=production
+    envVars:
+      - key: GUARDIAN_API_KEY
+        sync: false
     staticPublishPath: dist/mindfeed/browser
     pullRequestPreviewsEnabled: true
     headers:

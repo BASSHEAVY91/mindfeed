@@ -26,6 +26,8 @@ jobs:
         run: npm ci
 
       - name: Build production bundle
+        env:
+          GUARDIAN_API_KEY: ${{ secrets.GUARDIAN_API_KEY }}
         run: npm run build -- --configuration=production
 
       - name: Ensure SPA fallback files in dist

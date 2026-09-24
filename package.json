@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "prebuild": "node scripts/set-env.js",
     "build": "ng build",
     "postbuild": "node -e \"const fs=require('fs');const d='dist/mindfeed/browser';fs.writeFileSync(d+'/_redirects','/* /index.html 200');fs.copyFileSync(d+'/index.html',d+'/404.html');console.log('SPA fallback files written')\"",
     "watch": "ng build --watch --configuration development",
