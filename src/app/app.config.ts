@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withViewTransitions } from '@angular/router';
 import { routes } from './app.routes';
 import { ArticleRepositoryPort } from './core/domain/ports/article.repository.port';
@@ -8,7 +8,7 @@ import { LocalStorageFavoritesRepository } from './infrastructure/repositories/l
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideZonelessChangeDetection(),
     provideRouter(routes, withViewTransitions()),
     {
       provide: ArticleRepositoryPort,
