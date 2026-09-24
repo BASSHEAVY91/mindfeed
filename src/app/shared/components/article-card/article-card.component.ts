@@ -104,10 +104,9 @@ export class ArticleCardComponent {
   }
   get formattedDate(): string {
     if (!this.article.publishedAt) return '';
-    return new Date(this.article.publishedAt).toLocaleDateString('es-CO', {
+    return new Date(this.article.publishedAt).toLocaleDateString('en-us', {
       day: '2-digit',
       month: 'short',
-      year: 'numeric',
     });
   }
 }
