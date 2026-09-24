@@ -36,7 +36,11 @@ export class FilterArticlesUseCase {
           );
         }
 
-        return result;
+        // Always return newest-first regardless of filter combination
+        return result.sort(
+          (a, b) =>
+            new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+        );
       }),
     );
   }
