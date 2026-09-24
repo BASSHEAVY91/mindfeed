@@ -3,9 +3,9 @@ export const environment = {
   // Set your real Guardian API key as Render/CI environment variable: GUARDIAN_API_KEY
   // 'test' key was deprecated by The Guardian – register for a free developer key:
   // https://open-platform.theguardian.com/access/
-  guardianApiKey: '85793848-611d-48cf-90c5-3c93fe5d754d',
+  guardianApiKey: '',
   rss2jsonApiUrl: 'https://api.rss2json.com/v1/api.json',
   pubmedEmail: 'mindfeed@example.com',
   // Set to true only when guardianApiKey has a valid developer key
-  useDynamicNews: true,
+  useDynamicNews: false,
 };
