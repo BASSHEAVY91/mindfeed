@@ -50,6 +50,8 @@ const LEVEL_LABELS: Record<string, string> = {
             <span>{{ levelEmoji }} {{ levelLabel }}</span>
             <span>·</span>
             <span>⏱ {{ article.readingMinutes }} min</span>
+            <span>·</span>
+            <span>🗓 {{ formattedDate }}</span>
           </div>
           <div class="flex items-center gap-2">
             @if (showFavorite) {
@@ -91,5 +93,13 @@ export class ArticleCardComponent {
   get levelEmoji() {
     const m: Record<string, string> = { basico: '⚡', intermedio: '📘', avanzado: '🎓' };
     return m[this.article.level] ?? '📖';
+  }
+  get formattedDate(): string {
+    if (!this.article.publishedAt) return '';
+    return new Date(this.article.publishedAt).toLocaleDateString('es-CO', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    });
   }
 }

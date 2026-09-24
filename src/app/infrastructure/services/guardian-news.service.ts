@@ -158,9 +158,6 @@ export class GuardianNewsService {
       },
     });
 
-    console.log('[GuardianNewsService] useDynamicNews:', environment.useDynamicNews);
-    console.log('[GuardianNewsService] API key length:', environment.guardianApiKey?.length ?? 0);
-    console.log('[GuardianNewsService] API key preview:', environment.guardianApiKey ? environment.guardianApiKey.slice(0, 4) + '...' : '(empty)');
 
     if (!environment.guardianApiKey) {
       console.info('[GuardianNewsService] No API key configured – skipping fetch. Register at https://open-platform.theguardian.com/access/');
