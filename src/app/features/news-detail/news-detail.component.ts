@@ -114,6 +114,20 @@ import { TranslationService, TranslatedArticle } from '../../infrastructure/serv
           </div>
         }
 
+        <!-- SOURCE REFERENCE -->
+        @if (article()!.sourceUrl) {
+          <div class="flex items-center gap-2 text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 flex-shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+            </svg>
+            <span>Fuente:</span>
+            <a [href]="article()!.sourceUrl" target="_blank" rel="noopener noreferrer"
+              class="font-semibold text-brand-600 hover:text-brand-800 hover:underline truncate max-w-xs sm:max-w-none transition-colors">
+              {{ article()!.sourceLabel ?? 'The Guardian' }} ↗
+            </a>
+          </div>
+        }
+
         <!-- ACTIONS -->
         <div class="flex flex-wrap gap-3 mb-10">
           <button (click)="toggleFav()"
