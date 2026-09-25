@@ -101,9 +101,15 @@ import { TranslationService, TranslatedArticle } from '../../infrastructure/serv
         </div>
 
         <!-- BODY -->
-        <div class="prose prose-lg max-w-none text-gray-800 leading-relaxed mb-8">
-          <p class="text-lg font-semibold text-brand-800 mb-4">{{ displaySummary() }}</p>
-          <p class="mb-4">{{ displayBody() }}</p>
+        <div class="max-w-none mb-8 space-y-0">
+          <!-- Summary / lead -->
+          <p class="text-lg sm:text-xl font-semibold text-brand-800 leading-relaxed mb-6 border-l-4 border-brand-400 pl-4">
+            {{ displaySummary() }}
+          </p>
+          <!-- Body paragraphs -->
+          @for (para of bodyParagraphs(); track $index) {
+            <p class="text-base text-gray-700 leading-[1.85] mb-5 tracking-wide">{{ para }}</p>
+          }
         </div>
 
         <!-- DID YOU KNOW -->
@@ -202,6 +208,28 @@ export class NewsDetailComponent implements OnInit {
   displaySummary = computed(() => this.translated() && this.translatedData() ? this.translatedData()!.summary : (this.article()?.summary ?? ''));
   displayBody    = computed(() => this.translated() && this.translatedData() ? this.translatedData()!.body    : (this.article()?.body    ?? ''));
   displayFunFact = computed(() => this.translated() && this.translatedData() ? this.translatedData()!.funFact : (this.article()?.funFact));
+
+  /** Divide el cuerpo en párrafos separando por saltos de línea o puntos seguidos de mayúscula */
+  bodyParagraphs = computed<string[]>(() => {
+    const raw = this.displayBody();
+    if (!raw) return [];
+    // Split on double newlines, then single newlines, filter blanks
+    const byNewline = raw.split(/\n{2,}/).flatMap(chunk => chunk.split(/\n/));
+    const paragraphs = byNewline.map(s => s.trim()).filter(s => s.length > 0);
+    // If the API returned one big block (no newlines), split on sentence boundaries (~100 chars)
+    if (paragraphs.length <= 1 && raw.length > 300) {
+      const sentences = raw.match(/[^.!?]+[.!?]+["']?/g) ?? [raw];
+      const chunks: string[] = [];
+      let current = '';
+      for (const s of sentences) {
+        current += s;
+        if (current.length >= 250) { chunks.push(current.trim()); current = ''; }
+      }
+      if (current.trim()) chunks.push(current.trim());
+      return chunks.filter(c => c.length > 0);
+    }
+    return paragraphs;
+  });
 
   private _favTick = signal(0);
   isFav = computed(() => {
