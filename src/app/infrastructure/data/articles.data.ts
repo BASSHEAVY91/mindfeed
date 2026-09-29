@@ -114,7 +114,7 @@ export const ARTICLES_DATA: Article[] = [
     institution: 'Universidad de los Andes',
     publishedAt: '2026-11-15',
     readingMinutes: 7,
-    imageUrl: 'https://images.unsplash.com/photo-1532094349884-543559c0e8e0?w=800&h=400&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&h=400&fit=crop',
     tags: ['microbioma', 'intestino', 'serotonina', 'psicobiótica'],
     relatedIds: ['7', '1'],
   },
